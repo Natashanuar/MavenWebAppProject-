@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:bean xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<http auto-config="true">
+
+		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+
+		<intercept-url pattern="/add**" access="hasRole('ROLE_ADMIN')" />
+
+		<intercept-url pattern="/cart**" access="hasRole('ROLE_USER')" />
+
+		<!-- Be-default spring provide login page. the user name text field is 
+			'username' password text fiend name is 'password' . If you created your own 
+			loging.jsp. please follow the same naming convetion. -->
+
+		<form-login login-page="/login" username-parameter="username"
+			password-parameter="password" login-processing-url="/validate"
+			authentication-failure-forward-url="/login" />
+
+		<access-denied-handler error-page="/403" />
+
+
+		<!-- Cross Site Reference Forgery -->
+
+		<csrf disabled="true" />
+
+		<!-- You migned added some properties to HTTPSeession object at the time 
+			of login, You have to remove OR invalidate -->
+		<logout logout-url="/logout" />
+
+	</http>
+
+	<!-- dataSource must be same as in ApplicationContextConfig -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select username, password, enabled from user where username=?"
+				authorities-by-username-query="select id, role from authorize where id=?" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:bean>

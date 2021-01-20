@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<on-start>
+		<evaluate expression="flowController.initFlow()" result="flowScope.cartFlow"></evaluate>
+	</on-start>
+
+	<view-state id="start" view="/Thanks" model="flowScope.cartFlow">
+		<transition on="submit" to="home" />
+	</view-state>
+
+	<end-state id="home" view="/Home" />
+</flow>
