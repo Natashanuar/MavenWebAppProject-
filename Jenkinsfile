@@ -20,7 +20,7 @@ pipeline{
      }
     }
     
-    stage ('Check-The-Secrets') {
+  /*  stage ('Check-The-Secrets') {
       steps {
        // sh 'docker pull gesellix/trufflehog'
        // sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
@@ -38,14 +38,14 @@ pipeline{
          sh './dependency-check/bin/dependency-check.sh --scan ./* --enableRetired -f "ALL" '
        }
     }
-    
+    */
+  
     stage ('Build Execute Jar') {
       steps {
         sh 'mvn clean package'
          }
        }
-    */
-  
+    
     
   }
 }
