@@ -20,7 +20,7 @@ pipeline{
      }
     }
     
-    /*stage ('Check-The-Secrets') {
+    stage ('Check-The-Secrets') {
       steps {
        // sh 'docker pull gesellix/trufflehog'
        // sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
@@ -28,9 +28,9 @@ pipeline{
         sh 'docker run gesellix/trufflehog --json --regex https://github.com/Natashanuar/MavenWebAppProject-.git'
         sh 'cat trufflehog'
       }
-    }*/
+    }
     
-    stage ('Software Composition Analysis') {
+   /*stage ('Software Composition Analysis') {
       steps {
          sh 'rm -r dependency-check* || true' 
          sh 'wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip'
@@ -44,7 +44,7 @@ pipeline{
         sh 'mvn clean package'
          }
        }
-    
+    */
   
     
   }
