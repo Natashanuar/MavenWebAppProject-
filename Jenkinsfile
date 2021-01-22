@@ -25,7 +25,7 @@ pipeline{
        // sh 'docker pull gesellix/trufflehog'
        // sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
         sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json --regex https://github.com/Natashanuar/MavenWebAppProject-.git'
+        sh 'docker run gesellix/trufflehog --json https://github.com/broshaz/webLemah.git > trufflehog'
         sh 'cat trufflehog'
       }
     }
