@@ -20,15 +20,15 @@ pipeline{
      }
     }
     
-    stage ('Check-The-Secrets') {
+    /*stage ('Check-The-Secrets') {
       steps {
-        /*sh 'docker pull gesellix/trufflehog'
-        sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
-        sh 'rm trufflehog || true'*/
+       // sh 'docker pull gesellix/trufflehog'
+       // sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
+        sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json --regex https://github.com/Natashanuar/MavenWebAppProject-.git'
-       // sh 'cat trufflehog'
+        sh 'cat trufflehog'
       }
-    }
+    }*/
     
     stage ('Software Composition Analysis') {
       steps {
