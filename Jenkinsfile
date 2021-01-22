@@ -22,9 +22,11 @@ pipeline{
     
     stage ('Check-The-Secrets') {
       steps {
-        sh 'rm trufflehog || true'
+        sh 'docker pull gesellix/trufflehog'
+        sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
+        /*sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json --regex https://github.com/Natashanuar/MavenWebAppProject-t'
-        sh 'cat trufflehog'
+        sh 'cat trufflehog'*/
       }
     }
     
