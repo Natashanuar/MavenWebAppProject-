@@ -20,24 +20,22 @@ pipeline{
      }
     }
     
-  /*  stage ('Check-The-Secrets') {
-      steps {
-       // sh 'docker pull gesellix/trufflehog'
-       // sh 'docker run -t pull gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
+   stage ('Check-The-Secrets') {
+     steps {
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/Natashanuar/MavenWebAppProject-.git > trufflehog'
         sh 'cat trufflehog'
       }
     }
     
-   /*stage ('Software Composition Analysis') {
+   stage ('Software Composition Analysis') {
       steps {
          sh 'rm -r dependency-check* || true' 
          sh 'wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip'
          sh 'unzip dependency-check-6.0.3-release.zip'
          sh './dependency-check/bin/dependency-check.sh --scan ./* --enableRetired -f "ALL" '
        }
-    }*/
+    }
     
     stage ('SAST') {
       steps {
@@ -48,12 +46,10 @@ pipeline{
       }
     }
   
-    /*stage ('Build Execute Jar') {
+    stage ('Build Execute Jar') {
       steps {
         sh 'mvn clean package'
          }
-       }
-    */
-    
+       } 
   }
 }
